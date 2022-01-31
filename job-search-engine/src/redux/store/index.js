@@ -5,8 +5,10 @@ import compDetailReducer from '../reducer/compDetailReducer'
 import thunk from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
 import { encryptTransform } from 'redux-persist-transform-encrypt';
+
 // import storage from 'redux-persist/lib/storage'
 import storageSession from 'redux-persist/lib/storage/session' // defaults to sessionStorage for web
+const {REACT_APP_MY_KEY} = process.env
 
 // ************** REDUX-THUNK MIDDLEWARE **************
 // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -36,14 +38,11 @@ export const initialState = {
 const persistConfig = {
     key: 'root',
     storage:storageSession,
-    transforms: [
-        encryptTransform({
-          secretKey: process.env.REACT_APP_MY_KEY,
-          onError: (error) => {
-            console.log('encryption error', error)
-          },
-        }),
-      ],
+    // transforms: [
+    //     encryptTransform({
+    //       secretKey: REACT_APP_MY_KEY,
+    //     }),
+    //   ],
   }
 
 

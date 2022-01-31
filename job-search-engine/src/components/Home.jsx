@@ -3,9 +3,9 @@ import { FcLike } from "react-icons/fc";
 import { Form, Row, Dropdown } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import {useSelector, useDispatch} from 'react-redux'
 import JobList from "./JobList";
 import { getAlljobOffers } from "../redux/actions";
-import {useSelector, useDispatch} from 'react-redux'
 
 
 const Home = () => {
