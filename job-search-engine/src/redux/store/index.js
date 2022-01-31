@@ -4,6 +4,8 @@ import jobsReducer from '../reducer/jobsReducer'
 import compDetailReducer from '../reducer/compDetailReducer'
 import thunk from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
+import { encryptTransform } from 'redux-persist-transform-encrypt';
+// import storage from 'redux-persist/lib/storage'
 import storageSession from 'redux-persist/lib/storage/session' // defaults to sessionStorage for web
 
 // ************** REDUX-THUNK MIDDLEWARE **************
@@ -34,6 +36,14 @@ export const initialState = {
 const persistConfig = {
     key: 'root',
     storage:storageSession,
+    transforms: [
+        encryptTransform({
+          secretKey: process.env.REACT_APP_MY_KEY,
+          onError: (error) => {
+            console.log('encryption error', error)
+          },
+        }),
+      ],
   }
 
 
