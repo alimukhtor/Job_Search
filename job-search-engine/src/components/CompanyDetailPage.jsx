@@ -1,19 +1,13 @@
 import { Button, Row, Col} from 'react-bootstrap'
 import { RiDeleteBin6Line } from "react-icons/ri";
-import {connect} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {removeCompany} from '../redux/actions'
 
-const mapStateToProps = (state) => ({
-  detail: state.companyDetails.detail,
-});
 
-const mapDispatchToProps =(dispatch)=> ({
-  removeCompanyPage: (id) => {
-      dispatch(removeCompany(id))
-    },
-})
-const CompanyDetailPage =({detail, removeCompanyPage})=> {
 
+const CompanyDetailPage =()=> {
+  const dispatch = useDispatch()
+  const detail = useSelector(state=> state.companyDetails.detail)
 
   return(
     <>
@@ -24,7 +18,7 @@ const CompanyDetailPage =({detail, removeCompanyPage})=> {
             <h1 className="text-white text-center">This is The Company called : "{d.company_name}"</h1>
         </Col>
         <Col>
-        <Button className="my-3" variant="danger" onClick={() => {removeCompanyPage(d)}}><RiDeleteBin6Line /></Button>
+        <Button className="my-3" variant="danger" onClick={() => {dispatch(removeCompany(d))}}><RiDeleteBin6Line /></Button>
         </Col>
       </Row>
       ))
@@ -37,4 +31,4 @@ const CompanyDetailPage =({detail, removeCompanyPage})=> {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompanyDetailPage)
+export default CompanyDetailPage;

@@ -5,25 +5,18 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import JobList from "./JobList";
 import { getAlljobOffers } from "../redux/actions";
-import { connect } from "react-redux";
+import {useSelector, useDispatch} from 'react-redux'
 
-const mapStateToProps = (state) => ({
-  jobs: state.jobOffers.jobs,
-  inputValue: state.jobOffers.inputValue,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  getJobs: (inputValue) => {
-    dispatch(getAlljobOffers(inputValue));
-  },
-});
-const Home = ({ jobs, getJobs }) => {
-  const [inputValue, setInputValue] = useState("");
+const Home = () => {
   const location = useLocation();
-
+  const [inputValue, setInputValue] = useState("");
+  const dispatch = useDispatch()
+  const jobs = useSelector(state => state.jobOffers.jobs)
+  const getInputValue = useSelector(state=> state.jobOffers.inputValue)
 
   useEffect(() => {
-    getJobs(inputValue);
+    dispatch(getAlljobOffers(inputValue));
   }, [inputValue]);
 
   return (
@@ -67,10 +60,10 @@ const Home = ({ jobs, getJobs }) => {
         </Link>
       </Form>
       <Row>
-        <JobList job={jobs} inputValue={inputValue} />
+        <JobList job={jobs} inputValue={getInputValue} />
         
       </Row>
     </>
   );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

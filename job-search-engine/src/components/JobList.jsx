@@ -1,27 +1,19 @@
+// import { AiTwotoneLike } from "react-icons/ai";
 import {Col, Card, Button, Spinner, Alert} from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
-// import { AiTwotoneLike } from "react-icons/ai";
-import {connect} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import { addToFavoritesWithThunk } from "../redux/actions";
 import { sendToCompDetail } from '../redux/actions';
 
-const mapStateToProps =(state)=> ({
-  isError: state.favoriteJobs.isError,
-  isLoading: state.jobOffers.isLoading
-})
 
-const mapDispatchToProps = (dispatch) => ({
-  addToFavorite: (favJob) => {
-    dispatch(addToFavoritesWithThunk(favJob))
-  },
-  sendToCompPage:(detail)=> {
-    dispatch(sendToCompDetail(detail))
-  }
-})
 
-const JobList =({job, inputValue, addToFavorite, isError, isLoading, sendToCompPage})=> {
+const JobList =({ job, inputValue })=> {
     const location = useLocation();
+    const dispatch = useDispatch()
+    const isError = useSelector(state=> state.favoriteJobs.isError)
+    const isLoading = useSelector(state=>  state.jobOffers.isLoading)
+
     return(
       <>
       {
@@ -45,7 +37,7 @@ const JobList =({job, inputValue, addToFavorite, isError, isLoading, sendToCompP
                       <Link to="/companyName">
                         <div
                           className={(location.pathname === "/companyName" ? " active" : "")}
-                          onClick={()=> {sendToCompPage(j)}}
+                          onClick={()=> {dispatch(sendToCompDetail(j))}}
                           >
                           {j.company_name}
                         </div>
@@ -54,7 +46,7 @@ const JobList =({job, inputValue, addToFavorite, isError, isLoading, sendToCompP
                     </Card.Title>
                     <Card.Text style={{ color: "white" }}>{j.title}</Card.Text>
                     
-                    <Button className="border-0 mr-auto" style={{ background: "#282C34" }} onClick={() => {addToFavorite(j)}}>
+                    <Button className="border-0 mr-auto" style={{ background: "#282C34" }} onClick={() => {dispatch(addToFavoritesWithThunk(j))}}>
                         <AiFillLike style={{ fontSize: "25px" }} />
                     </Button>
                     
@@ -68,4 +60,4 @@ const JobList =({job, inputValue, addToFavorite, isError, isLoading, sendToCompP
           )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobList)
+export default JobList;
