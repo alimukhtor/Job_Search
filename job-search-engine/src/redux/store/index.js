@@ -3,8 +3,8 @@ import favJobsReducer from '../reducer/favJobsReducer'
 import jobsReducer from '../reducer/jobsReducer'
 import compDetailReducer from '../reducer/compDetailReducer'
 import thunk from 'redux-thunk'
-
-
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 // ************** REDUX-THUNK MIDDLEWARE **************
 // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -31,6 +31,13 @@ export const initialState = {
     }
 }
 
+const persistConfig = {
+    key: 'root',
+    storage,
+  }
+
+
+
 // **************** CONNECTING REDUCERS ****************
 
 const multiReducer = combineReducers({
@@ -39,12 +46,13 @@ const multiReducer = combineReducers({
     companyDetails:compDetailReducer
 })
 
+const persistedReducer = persistReducer(persistConfig, multiReducer)
 // *************** CONFIGURATION STOREE HERE *****************
 
-let configStore = createStore(
-    multiReducer,
+export const configStore = createStore(
+    persistedReducer,
     initialState,
     composeThatAlwaysWorks(applyMiddleware(thunk))
   )
 
-  export default configStore
+  export const persistor = persistStore(configStore)
