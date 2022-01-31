@@ -4,17 +4,18 @@ import { Link, useLocation } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import {useSelector, useDispatch} from 'react-redux'
 import { addToFavoritesWithThunk } from "../redux/actions";
+import {removeFromFavsWithThunk} from '../redux/actions'
 import { sendToCompDetail } from '../redux/actions';
 
 
-
 const JobList =({ job, inputValue })=> {
-    const location = useLocation();
-    const dispatch = useDispatch()
-    const isError = useSelector(state=> state.favoriteJobs.isError)
-    const isLoading = useSelector(state=>  state.jobOffers.isLoading)
+  const location = useLocation();
+  const dispatch = useDispatch()
+  const favorites = useSelector(state=> state.favoriteJobs.favorites)
+  const isError = useSelector(state=> state.favoriteJobs.isError)
+  const isLoading = useSelector(state=>  state.jobOffers.isLoading)
 
-    return(
+  return(
       <>
       {
         isError
