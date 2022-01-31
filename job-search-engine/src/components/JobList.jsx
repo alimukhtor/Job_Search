@@ -14,7 +14,7 @@ const JobList =({ job, inputValue })=> {
   const favorites = useSelector(state=> state.favoriteJobs.favorites)
   const isError = useSelector(state=> state.favoriteJobs.isError)
   const isLoading = useSelector(state=>  state.jobOffers.isLoading)
-  const isFav = favorites.includes(job.data.title)
+  const isFav = favorites.includes(job.data?.title)
   return(
       <>
       {

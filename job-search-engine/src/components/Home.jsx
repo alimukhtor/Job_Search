@@ -12,7 +12,7 @@ const Home = () => {
   const location = useLocation();
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch()
-  const jobs = useSelector(state => state.jobOffers.jobs)
+  const jobs = useSelector(state => state.jobOffers?.jobs)
   const getInputValue = useSelector(state=> state.jobOffers.inputValue)
 
   useEffect(() => {

@@ -8,6 +8,7 @@ import { encryptTransform } from 'redux-persist-transform-encrypt';
 
 // import storage from 'redux-persist/lib/storage'
 import storageSession from 'redux-persist/lib/storage/session' // defaults to sessionStorage for web
+
 const {REACT_APP_MY_KEY} = process.env
 
 // ************** REDUX-THUNK MIDDLEWARE **************
@@ -38,11 +39,11 @@ export const initialState = {
 const persistConfig = {
     key: 'root',
     storage:storageSession,
-    // transforms: [
-    //     encryptTransform({
-    //       secretKey: REACT_APP_MY_KEY,
-    //     }),
-    //   ],
+    transforms: [
+        encryptTransform({
+          secretKey: REACT_APP_MY_KEY,
+        }),
+      ],
   }
 
 
