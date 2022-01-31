@@ -14,7 +14,8 @@ const CompanyDetailPage = () => {
           <Row className="mt-5 text-center">
             <Col xs={12} md={4} lg={6}>
               <div className="text-white text-center">
-                <h1>Company:<strong> {d.company_name} </strong></h1>
+                {/* <h1>Company:<strong> {d.company_name} </strong></h1> */}
+                <h1>Company:<strong>  <a href={d.url}>{d.company_name}</a> </strong></h1>
                 <h3>Category: {d.category}</h3>
                 <h4>Job type: {d.job_type}</h4>
                 <p>Job type: {d.description}</p>

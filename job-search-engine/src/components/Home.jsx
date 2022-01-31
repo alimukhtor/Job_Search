@@ -21,10 +21,10 @@ const Home = () => {
 
   return (
     <>
-    <Row className="mt-5">
+    <Row className="mt-3">
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Dropdown Button
+         Category
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -34,7 +34,7 @@ const Home = () => {
         </Dropdown.Menu>
       </Dropdown>
     </Row>
-      <h1 className="text-light mt-5 text-center">
+      <h1 className="text-light mt-1 text-center">
         <strong>Strive Job Search Engine</strong> <MdPersonSearch />
       </h1>
       <Form className="mt-5">
@@ -50,7 +50,7 @@ const Home = () => {
         </Form.Group>
         {/* <Button variant="" className="rounded-pill" style={{background: "#287C41" }}>Search</Button> */}
         <Link to="/favorites">
-          <div className={location.pathname === "/favorites" ? " active" : ""}>
+          <div className={location.pathname === "/favorites" ? " active" : ""} style={{ fontSize: "25px" }}>
             Favorites{" "}
             <FcLike
               className="mb-1"
