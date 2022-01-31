@@ -1,12 +1,11 @@
 import { MdPersonSearch } from "react-icons/md";
 import { FcLike } from "react-icons/fc";
-import { Form, Row, Button, Dropdown, Col } from "react-bootstrap";
+import { Form, Row, Dropdown } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import JobList from "./JobList";
 import { getAlljobOffers } from "../redux/actions";
 import { connect } from "react-redux";
-import CompanyDetailPage from "./CompanyDetailPage";
 
 const mapStateToProps = (state) => ({
   jobs: state.jobOffers.jobs,
@@ -21,7 +20,6 @@ const mapDispatchToProps = (dispatch) => ({
 const Home = ({ jobs, getJobs }) => {
   const [inputValue, setInputValue] = useState("");
   const location = useLocation();
-  console.log("ali", jobs);
 
 
   useEffect(() => {
