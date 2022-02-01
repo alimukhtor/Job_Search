@@ -23,7 +23,6 @@ export const addToFavoritesWithThunk =(favJob)=> {
         
 }
 
-
 export const removeFromFavsWithThunk =(index)=> {
     return (dispatch)=> {
         dispatch({
@@ -39,6 +38,16 @@ export const removeCompany = (id)=> {
         dispatch({
             type:REMOVE_COMPANY,
             payload: id
+        })
+    }
+}
+
+export const readLoading =()=> {
+    return(dispatch)=>{
+        dispatch({
+            type:GET_LOADING_SPINNER,
+            payload:false
+
         })
     }
 }
