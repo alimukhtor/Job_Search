@@ -1,5 +1,5 @@
 import { initialState } from "../store";
-import {ADD_TO_FAVORITES, REMOVE_FROM_FAVS, GET_JOB_OFFERS_ERROR, GET_LOADING_SPINNER} from '../actions'
+import {ADD_TO_FAVORITES, REMOVE_FROM_FAVS, GET_JOB_OFFERS_ERROR, TOGGLE_LOADING_SPINNER} from '../actions'
 
 const favJobsReducer =(state = initialState.favoriteJobs, action)=> {
     switch(action.type){
@@ -13,10 +13,10 @@ const favJobsReducer =(state = initialState.favoriteJobs, action)=> {
                 ...state,
                     favorites: state.favorites.filter((fav, i)=> i !== action.payload)
                 }
-        case GET_LOADING_SPINNER:
+        case TOGGLE_LOADING_SPINNER:
             return{
                 ...state,
-                isLoading: [state.isLoading, action.payload]
+                isLoading: action.payload
             }
         case GET_JOB_OFFERS_ERROR:
             return{

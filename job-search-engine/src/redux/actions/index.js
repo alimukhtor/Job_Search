@@ -8,7 +8,7 @@ export const GET_JOB_OFFERS = "GET_JOB_OFFERS"
 export const GET_JOB_OFFERS_ERROR = "GET_JOB_OFFERS_ERROR"
 export const GET_INPUT_VALUE = "GET_INPUT_VALUE"
 export const GET_LIMIT = "GET_LIMIT"
-export const GET_LOADING_SPINNER = "GET_LOADING_SPINNER"
+export const TOGGLE_LOADING_SPINNER = "GET_LOADING_SPINNER"
 export const GET_COMPANY_DETAIL = 'GET_COMPANY_DETAIL'
 export const REMOVE_COMPANY = 'REMOVE_COMPANY'
 
@@ -42,16 +42,6 @@ export const removeCompany = (id)=> {
     }
 }
 
-export const readLoading =()=> {
-    return(dispatch)=>{
-        dispatch({
-            type:GET_LOADING_SPINNER,
-            payload:false
-
-        })
-    }
-}
-
 export const sendToCompDetail =(detail)=>{
     return (dispatch)=> {
         dispatch({
@@ -71,7 +61,7 @@ export const getAlljobOffers =(inputValue)=> {
                   payload:jobs
               })
               dispatch({
-                  type:GET_LOADING_SPINNER,
+                  type:TOGGLE_LOADING_SPINNER,
                   payload:false
               })
             }else{

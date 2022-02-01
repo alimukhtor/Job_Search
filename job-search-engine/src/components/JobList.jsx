@@ -1,11 +1,12 @@
 // import { AiTwotoneLike } from "react-icons/ai";
+import { useEffect } from 'react';
 import {Col, Card, Button, Spinner, Alert} from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import {useSelector, useDispatch} from 'react-redux'
 import { addToFavoritesWithThunk } from "../redux/actions";
+import { sendToCompDetail, TOGGLE_LOADING_SPINNER } from '../redux/actions';
 // import {removeFromFavsWithThunk} from '../redux/actions'
-import { sendToCompDetail } from '../redux/actions';
 
 
 const JobList =({ job, inputValue })=> {
@@ -15,6 +16,16 @@ const JobList =({ job, inputValue })=> {
   const isError = useSelector(state=> state.favoriteJobs.isError)
   const isLoading = useSelector(state=>  state.jobOffers.isLoading)
   // const isFav = favorites.includes(job.data?.title)
+
+  useEffect( () => {
+    dispatch({ type: TOGGLE_LOADING_SPINNER, payload: true })
+    
+    setTimeout(() => {
+        dispatch({ type: TOGGLE_LOADING_SPINNER, payload: false })
+    }, 1000)
+}, [])
+
+
   return(
       <>
       {
@@ -47,7 +58,7 @@ const JobList =({ job, inputValue })=> {
                     </Card.Title>
                     <Card.Text style={{ color: "white" }}>{j.title}</Card.Text>
                     
-                    <Button className="border-0 mr-auto" style={{ background: "#282C34" }} onClick={() => {dispatch(addToFavoritesWithThunk(j))}}>
+                    <Button className="border-0 mr-auto" style={{ background: "#282C34" }} onClick={() => {dispatch(addToFavoritesWithThunk(j), )}}>
                     <AiFillLike style={{ fontSize: "25px" }}  />
                     </Button>
                     {/* {

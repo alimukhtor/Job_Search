@@ -1,5 +1,5 @@
 import { initialState } from "../store";
-import {GET_JOB_OFFERS, GET_JOB_OFFERS_ERROR, GET_INPUT_VALUE, GET_LIMIT, GET_LOADING_SPINNER} from '../actions'
+import {GET_JOB_OFFERS, GET_JOB_OFFERS_ERROR, GET_INPUT_VALUE, GET_LIMIT, TOGGLE_LOADING_SPINNER} from '../actions'
 
 const jobsReducer =(state = initialState.jobOffers, action)=> {
     switch(action.type){
@@ -24,7 +24,7 @@ const jobsReducer =(state = initialState.jobOffers, action)=> {
                 ...state,
                 limit: state.jobOffers.limit
             }    
-        case GET_LOADING_SPINNER:
+        case TOGGLE_LOADING_SPINNER:
             return{
                 ...state,
                 isLoading:action.payload
