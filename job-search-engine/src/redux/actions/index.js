@@ -14,7 +14,6 @@ export const REMOVE_COMPANY = 'REMOVE_COMPANY'
 
 export const addToFavoritesWithThunk =(favJob)=> {
     return async(dispatch, getState)=> {
-        console.log("Here is my getstate:", getState());
         dispatch({
             type: ADD_TO_FAVORITES,
             payload: favJob
@@ -65,7 +64,6 @@ export const getAlljobOffers =(inputValue)=> {
             let response = await fetch(`https://strive-jobs-api.herokuapp.com/jobs?search=${inputValue}&limit=20`);
             if (response.ok) {
               let jobs = await response.json();
-              console.log(jobs);
               dispatch({
                   type: GET_JOB_OFFERS,
                   payload:jobs

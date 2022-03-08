@@ -13,6 +13,7 @@ const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch()
   const jobs = useSelector(state => state.jobOffers?.jobs)
+  const favorites = useSelector(state => state.favoriteJobs.favorites)
   const getInputValue = useSelector(state=> state.jobOffers.inputValue)
 
   useEffect(() => {
@@ -26,7 +27,6 @@ const Home = () => {
       </h1>
       <Form className="mt-5">
         <Form.Group controlId="formBasicEmail">
-          {/* <FaSearch className="search-icon"/> */}
           <Form.Control
             className="text-left search-input rounded-pill"
             type="search"
@@ -35,14 +35,13 @@ const Home = () => {
             onChange={(e) => setInputValue(e.target.value)}
           />
         </Form.Group>
-        {/* <Button variant="" className="rounded-pill" style={{background: "#287C41" }}>Search</Button> */}
         <Link to="/favorites">
           <div className={location.pathname === "/favorites" ? " active" : ""} style={{ fontSize: "25px" }}>
-            Favorites{" "}
             <FcLike
               className="mb-1"
-              style={{ background: "#282C34", fontSize: "20px" }}
-            />
+              style={{ background: "#282C34", fontSize: "25px" }}
+              />
+              <span className="ml-2 text-info">{favorites.length}</span>
           </div>
         </Link>
       </Form>
