@@ -48,6 +48,7 @@ export const sendToCompDetail =(company_name)=>{
             const response = await fetch(`https://strive-jobs-api.herokuapp.com/jobs?company=${company_name}`)
             if(response.ok){
                 const data = await response.json()
+                console.log(data);
                 dispatch({
                     type:GET_COMPANY_DETAIL,
                     payload:data

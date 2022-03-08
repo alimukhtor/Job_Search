@@ -1,6 +1,6 @@
 import { MdPersonSearch } from "react-icons/md";
 import { FcLike } from "react-icons/fc";
-import { Form, Row, Dropdown } from "react-bootstrap";
+import { Form, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
@@ -21,20 +21,7 @@ const Home = () => {
 
   return (
     <>
-    <Row className="mt-3">
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-         Category
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          <Dropdown.Item>Action</Dropdown.Item>
-          <Dropdown.Item>Another action</Dropdown.Item>
-          <Dropdown.Item>Something else</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </Row>
-      <h1 className="text-light mt-1 text-center">
+      <h1 className="text-light mt-5 text-center">
         <strong>Strive Job Search Engine</strong> <MdPersonSearch />
       </h1>
       <Form className="mt-5">

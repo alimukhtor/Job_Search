@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import {Col, Card, Button, Spinner, Alert} from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { AiFillLike } from "react-icons/ai";
+import { FcLike } from "react-icons/fc";
 import {useSelector, useDispatch} from 'react-redux'
 import { addToFavoritesWithThunk } from "../redux/actions";
 import { sendToCompDetail, TOGGLE_LOADING_SPINNER } from '../redux/actions';
@@ -15,6 +15,7 @@ const JobList =({ job, inputValue })=> {
   // const favorites = useSelector(state=> state.favoriteJobs.favorites)
   const isError = useSelector(state=> state.favoriteJobs.isError)
   const isLoading = useSelector(state=>  state.jobOffers.isLoading)
+  const favorites = useSelector(state => state.favoriteJobs.favorites)
   // const isFav = favorites.includes(job.data?.title)
 
   useEffect( () => {
@@ -51,23 +52,19 @@ const JobList =({ job, inputValue })=> {
                           className={(location.pathname === "/companyName" ? " active" : "")}
                           onClick={()=> {dispatch(sendToCompDetail(j.company_name))}}
                           >
-                          {j.company_name}
+                          <span className='text-info'>{j.company_name}</span>
                         </div>
                       </Link>
                        
                     </Card.Title>
                     <Card.Text style={{ color: "white" }}>{j.title}</Card.Text>
                     
-                    <Button className="border-0 mr-auto" style={{ background: "#282C34" }} onClick={() => {dispatch(addToFavoritesWithThunk(j), )}}>
-                    <AiFillLike style={{ fontSize: "25px" }}  />
+                    <Button className="border-0 mr-auto" style={{ background: "#282C34" }} 
+                    onClick={() => {dispatch(addToFavoritesWithThunk(j))}}
+                    disabled={!!favorites.find(favJob => favJob._id === j._id) ? <FcLike /> : null}
+                    >
+                    <FcLike style={{ fontSize: "25px" }}  />
                     </Button>
-                    {/* {
-                      isFav 
-                    ?  <AiFillLike style={{ fontSize: "25px" }}  onClick={() => {dispatch(addToFavoritesWithThunk(j))}} />
-                    :
-                    <AiTwotoneLike style={{ fontSize: "25px" }}  onClick={() => {dispatch(removeFromFavsWithThunk(j))}}/>
-                    } */}
-                    
                   </Card.Body>
                 </Card>
               </Col>
