@@ -42,12 +42,20 @@ export const removeCompany = (id)=> {
     }
 }
 
-export const sendToCompDetail =(detail)=>{
-    return (dispatch)=> {
-        dispatch({
-            type:GET_COMPANY_DETAIL,
-            payload:detail
-        })
+export const sendToCompDetail =(company_name)=>{
+    return async(dispatch)=> {
+        try {
+            const response = await fetch(`https://strive-jobs-api.herokuapp.com/jobs?company=${company_name}`)
+            if(response.ok){
+                const data = await response.json()
+                dispatch({
+                    type:GET_COMPANY_DETAIL,
+                    payload:data
+                })
+            }
+        } catch (error) {
+            
+        }
     }
 }
 export const getAlljobOffers =(inputValue)=> {
@@ -56,6 +64,7 @@ export const getAlljobOffers =(inputValue)=> {
             let response = await fetch(`https://strive-jobs-api.herokuapp.com/jobs?search=${inputValue}&limit=20`);
             if (response.ok) {
               let jobs = await response.json();
+              console.log(jobs);
               dispatch({
                   type: GET_JOB_OFFERS,
                   payload:jobs

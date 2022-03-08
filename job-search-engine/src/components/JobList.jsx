@@ -49,7 +49,7 @@ const JobList =({ job, inputValue })=> {
                       <Link to="/companyName">
                         <div
                           className={(location.pathname === "/companyName" ? " active" : "")}
-                          onClick={()=> {dispatch(sendToCompDetail(j))}}
+                          onClick={()=> {dispatch(sendToCompDetail(j.company_name))}}
                           >
                           {j.company_name}
                         </div>

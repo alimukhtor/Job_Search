@@ -6,7 +6,7 @@ const compDetailReducer =(state = initialState.companyDetails, action)=> {
         case GET_COMPANY_DETAIL:
             return{
                 ...state,
-                detail:[state.detail, action.payload],
+                detail:[...state.detail, ...action.payload],
             }
         case REMOVE_COMPANY:
             return{
